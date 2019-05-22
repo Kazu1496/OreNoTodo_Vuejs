@@ -9,7 +9,7 @@
       p {{ remaining.length }}/{{ todos.length }}
       li(v-for="(todo, index) in todos")
         input(type="checkbox", v-model="todo.status")
-        span(:class="{ done: todo.status }") {{ todo.name }}
+        span(:class="{ done: todo.status }") {{ todo.title }}
         button(@click="deleteItem(index)") Delete
     p(v-else) Nothing Todo!!
 </template>
@@ -33,7 +33,7 @@ export default {
     addItem: function(){
       let item = {
         status: false,
-        name: this.newItem
+        title: this.newItem
       }
       this.todos.push(item);
       this.newItem = ''
@@ -68,13 +68,7 @@ export default {
     }
   },
   mounted: function(){
-    axios.get('localhost:3000/todos')
-    .then((res) => {
-      this.todos = res.data;
-    })
-    .catch((res) => {
-       alert(res);
-    });
+    this.todos = JSON.parse(localStorage.getItem('todos'));
   }
 }
 </script>
