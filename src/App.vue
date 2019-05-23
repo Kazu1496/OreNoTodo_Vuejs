@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import PageTop from './components/PageTop.vue'
+import PageTop from './components/pages/PageTop.vue'
 
 export default {
   name: 'app',
@@ -15,14 +15,12 @@ export default {
 </script>
 
 <style>
+@import './assets/stylesheets/Reset.scss';
 #app {
   display: flex;
   justify-content: center;
   width: 500px;
   text-align: center;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   margin: auto;
 }
 </style>

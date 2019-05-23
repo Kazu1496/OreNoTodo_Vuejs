@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import AddForm from './molecules/AddForm.vue'
-import TodoList from './organisms/TodoList.vue'
+import AddForm from '../molecules/AddForm.vue'
+import TodoList from '../organisms/TodoList.vue'
 
 export default {
   name: 'index',
@@ -58,5 +58,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../assets/stylesheets/TodoIndex.scss';
+@import '../../assets/stylesheets/pages/TodoIndex.scss';
 </style>
