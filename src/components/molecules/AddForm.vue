@@ -16,6 +16,10 @@ export default {
   },
   methods: {
     addItem() {
+      if(this.newItem === ''){
+        alert('値を入力してください。');
+        return;
+      }
       let item = {
         status: false,
         title: this.newItem
