@@ -1,5 +1,6 @@
 <template lang="pug">
   div#app
+    img(src="./assets/logo.png")
     page-top(msg="Todo List")
 </template>
 
@@ -14,13 +15,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 @import './assets/stylesheets/Reset.scss';
-#app {
-  display: flex;
-  justify-content: center;
-  width: 500px;
+#app{
+  width: 350px;
   text-align: center;
-  margin: auto;
+  margin: 20px auto;
+  img{
+    width: 100px;
+    height: auto;
+  }
 }
 </style>

@@ -12,7 +12,7 @@ import AddForm from '../molecules/AddForm.vue'
 import TodoList from '../organisms/TodoList.vue'
 
 export default {
-  name: 'index',
+  name: 'PageTop',
   props: {
     msg: String
   },
@@ -28,8 +28,13 @@ export default {
   },
   methods: {
     purgeItem() {
-      if(!confirm("一括削除しても大丈夫ですか？")){
+      if(this.remaining.length >= this.todos.length){
+        alert('終わったTodoがありません。');
         return;
+      }else{
+        if(!confirm("一括削除しても大丈夫ですか？")){
+          return;
+        }
       }
       this.todos = this.remaining;
     }
