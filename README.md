@@ -1,4 +1,11 @@
-# learning_vuejs
+# Practice_Vue.js
+
+## Versions
+```
+npm: 6.9.0
+vue-cli: 3.7.0
+node: v12.1.0
+```
 
 ## Project setup
 ```
