@@ -1,15 +1,15 @@
 <template lang="pug">
   div#app
-    TodoList(msg="Todo List")
+    page-top(msg="Todo List")
 </template>
 
 <script>
-import TodoList from './components/todo.vue'
+import PageTop from './components/PageTop.vue'
 
 export default {
   name: 'app',
   components: {
-    TodoList
+    PageTop
   }
 }
 </script>
@@ -18,8 +18,11 @@ export default {
 #app {
   display: flex;
   justify-content: center;
+  width: 500px;
+  text-align: center;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: auto;
 }
 </style>
