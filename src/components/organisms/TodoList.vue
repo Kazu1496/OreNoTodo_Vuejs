@@ -1,6 +1,11 @@
 <template lang="pug">
   ul(v-if="todos.length")
-    todo-item(:todos="todos")
+    todo-item(
+      v-for="(todo, index) in todos"
+      :index="index"
+      :todo="todo"
+      :todos="todos"
+    )
   p(v-else) Nothing Todo!!
 </template>
 

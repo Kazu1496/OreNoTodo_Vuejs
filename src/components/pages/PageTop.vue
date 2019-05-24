@@ -11,6 +11,10 @@
 import AddForm from '../molecules/AddForm.vue'
 import TodoList from '../organisms/TodoList.vue'
 
+import axios from 'axios';
+
+const URL = process.env.VUE_APP_API_URL_BASE;
+console.log(URL);
 export default {
   name: 'PageTop',
   props: {
@@ -20,7 +24,7 @@ export default {
     AddForm,
     TodoList
   },
-  data() {
+  data: function() {
     return {
       newItem: '',
       todos: []
@@ -36,6 +40,14 @@ export default {
           return;
         }
       }
+      this.todos.filter((todo) => {
+        if(todo.status){
+          axios.delete(URL + "/todos/" + todo.id)
+            .catch(err => {
+              alert(err);
+            })
+        }
+      })
       this.todos = this.remaining;
     }
   },
@@ -47,16 +59,14 @@ export default {
       return items;
     }
   },
-  watch: {
-    todos: {
-      handler() {
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-      },
-      deep: true
-    }
-  },
   mounted() {
-    this.todos = JSON.parse(localStorage.getItem('todos'));
+    axios.get(URL + "/todos")
+      .then(res => {
+        this.todos = res.data
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 }
 </script>
