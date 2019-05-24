@@ -16,18 +16,39 @@ import axios from 'axios';
 const URL = process.env.VUE_APP_API_URL_BASE;
 export default {
   name: 'PageTop',
-  props: {
-    msg: String
-  },
   components: {
     AddForm,
     TodoList
+  },
+  props: {
+    msg: {
+      type: String,
+      require: false,
+      default: ''
+    }
   },
   data: function() {
     return {
       newItem: '',
       todos: []
     }
+  },
+  computed: {
+    remaining() {
+      let items = this.todos.filter(todo => {
+        return !todo.status;
+      });
+      return items;
+    }
+  },
+  mounted() {
+    axios.get(URL + "/todos")
+      .then(res => {
+        this.todos = res.data
+      })
+      .catch(err => {
+        console.log(err);
+      })
   },
   methods: {
     purgeItem() {
@@ -49,23 +70,6 @@ export default {
       })
       this.todos = this.remaining;
     }
-  },
-  computed: {
-    remaining() {
-      let items = this.todos.filter(todo => {
-        return !todo.status;
-      });
-      return items;
-    }
-  },
-  mounted() {
-    axios.get(URL + "/todos")
-      .then(res => {
-        this.todos = res.data
-      })
-      .catch(err => {
-        console.log(err);
-      })
   }
 }
 </script>

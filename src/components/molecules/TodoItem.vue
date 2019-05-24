@@ -12,9 +12,21 @@ const URL = process.env.VUE_APP_API_URL_BASE;
 export default {
   name: 'TodoItem',
   props: {
-    index: Number,
-    todo: Object,
-    todos: Array
+    index: {
+      type: Number,
+      require: false,
+      default: 0
+    },
+    todo: {
+      type: Object,
+      require: false,
+      default: () => ({})
+    },
+    todos: {
+      type: Array,
+      require: false,
+      default: () => ([])
+    }
   },
   methods: {
     deleteItem(index) {
@@ -22,19 +34,11 @@ export default {
         return;
       }
       axios.delete(URL + "/todos/" + this.todo.id)
-        .catch(err => {
-          alert("削除処理が失敗しました");
-          console.log(err);
-        })
       this.todos.splice(index, 1);
     },
     toggleStatus() {
       axios.patch(URL + "/todos/" + this.todo.id, {
         status: !this.todo.status
-      })
-      .catch(err => {
-        alert("削除処理が失敗しました");
-        console.log(err);
       })
       this.todo.status = !this.todo.status
     }

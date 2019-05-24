@@ -14,11 +14,15 @@ import TodoItem from '../molecules/TodoItem.vue'
 
 export default {
   name: 'TodoList',
-  props: {
-    todos: Array
-  },
   components: {
     TodoItem
+  },
+  props: {
+    todos: {
+      type: Array,
+      require: false,
+      default: () => ([])
+    }
   }
 }
 </script>
