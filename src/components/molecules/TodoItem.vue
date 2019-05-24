@@ -37,10 +37,8 @@ export default {
       this.todos.splice(index, 1);
     },
     toggleStatus() {
-      axios.patch(URL + "/todos/" + this.todo.id, {
-        status: !this.todo.status
-      })
       this.todo.status = !this.todo.status
+      axios.patch(URL + "/todos/" + this.todo.id, this.todo)
     }
   }
 }
