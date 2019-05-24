@@ -14,7 +14,6 @@ import TodoList from '../organisms/TodoList.vue'
 import axios from 'axios';
 
 const URL = process.env.VUE_APP_API_URL_BASE;
-console.log(URL);
 export default {
   name: 'PageTop',
   props: {
@@ -40,7 +39,7 @@ export default {
           return;
         }
       }
-      this.todos.filter((todo) => {
+      this.todos.forEach(todo => {
         if(todo.status){
           axios.delete(URL + "/todos/" + todo.id)
             .catch(err => {
@@ -53,7 +52,7 @@ export default {
   },
   computed: {
     remaining() {
-      let items = this.todos.filter((todo) => {
+      let items = this.todos.filter(todo => {
         return !todo.status;
       });
       return items;

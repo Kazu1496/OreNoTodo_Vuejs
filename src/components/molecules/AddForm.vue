@@ -29,7 +29,7 @@ export default {
         score: 1,
         title: this.newItem
       }
-      axios.post(URL, item)
+      axios.post(URL + "/todos", item)
         .then(res => {
           this.todos.push(res.data);
         })
