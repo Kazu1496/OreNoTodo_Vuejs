@@ -27,7 +27,7 @@ export default {
       default: ''
     }
   },
-  data: function() {
+  data() {
     return {
       newItem: '',
       todos: []
