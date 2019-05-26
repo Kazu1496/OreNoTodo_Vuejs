@@ -5,7 +5,6 @@ li{
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-  cursor: grab;
   margin: 15px auto;
   padding: 15px;
   @include shadow(1px, 2px, 1px, 0.3);
@@ -23,9 +22,7 @@ li{
   }
   .title{
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 100%;
     font-weight: bold;
     color: $secondary_black_text;
     margin-bottom: 10px;

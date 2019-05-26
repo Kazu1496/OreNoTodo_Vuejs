@@ -4,7 +4,7 @@
       span.title(:class="{ done: todo.status }") {{ todo.title }}
       .priority_area
         font-awesome-icon(icon="star", v-for="n in todo.score")
-    select(v-model="dataTodo.label", @change="changeLabel")
+    select(v-model="todo.label", @change="changeLabel")
       option(v-for="option in options") {{ option }}
 </template>
 
@@ -28,13 +28,12 @@ export default {
   },
   data() {
     return {
-      dataTodo: this.todo,
       options: ['Todo', 'Doing', 'Done']
     }
   },
   methods: {
     changeLabel() {
-      axios.patch(`${URL}/cards/${this.dataTodo.id}`, this.dataTodo)
+      axios.patch(`${URL}/cards/${this.todo.id}`, this.todo)
     },
     callDelete(todo) {
       this.$emit('delete', todo)

@@ -33,7 +33,10 @@ export default {
   },
   computed: {
     remaining() {
-      return this.todos.filter(todo => !todo.status);
+      return this.todos.filter(todo => todo.label !== 'Done');
+    },
+    doneTodo() {
+      return this.todos.filter(todo => todo.label === 'Done');
     }
   },
   mounted() {
@@ -48,22 +51,20 @@ export default {
   },
   methods: {
     purgeItem() {
-      if (this.remaining.length >= this.todos.length) {
+      if (this.doneTodo.length === 0) {
         alert('終わったTodoがありません。');
         return;
       }
       if (!confirm('一括削除しても大丈夫ですか？')) {
         return;
       }
-      this.todos.forEach((todo) => {
-        if (todo.status) {
-          axios.delete(`${URL}/cards/${todo.id}`)
-            .catch((err) => {
-              alert(err);
-            });
-        }
+      this.doneTodo.forEach(todo => {
+        axios.delete(`${URL}/cards/${todo.id}`)
+          .catch((err) => {
+            alert(err);
+          });
       });
-      this.todos = this.remaining;
+      this.todos = this.remaining
     }
   }
 };

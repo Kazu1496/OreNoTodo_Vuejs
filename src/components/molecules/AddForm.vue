@@ -52,6 +52,7 @@ export default {
           this.todos.push(res.data);
         });
       this.title = '';
+      this.score = 1;
     },
   },
 };
