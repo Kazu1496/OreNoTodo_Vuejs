@@ -1,0 +1,25 @@
+$first_color: #F44336;
+$second_color: #FF5252;
+$third_color: #FFA726;
+
+$primary_white_text: rgba(#FFF,0.87);
+$secondary_white_text: rgba(#FFF,0.54);
+$hint_white_text: rgba(#FFF,0.38);
+$divider_white_text: rgba(#FFF,0.14);
+
+$primary_black_text: rgba(#000,0.87);
+$secondary_black_text: rgba(#000,0.54);
+$hint_black_text: rgba(#000,0.38);
+$divider_black_text: rgba(#000,0.14);
+
+@mixin shadow($vertical, $blur, $depth, $opacity){
+  box-shadow: 0px $vertical $blur $depth rgba(0,0,0,$opacity);
+  -webkit-box-shadow: 0px $vertical $blur $depth rgba(0,0,0,$opacity);
+  -moz-box-shadow: 0px $vertical $blur $depth rgba(0,0,0,$opacity);
+}
+
+body{
+  color: $primary_black_text;
+  background-color: #F7F7F7;
+  word-wrap: break-word;
+}

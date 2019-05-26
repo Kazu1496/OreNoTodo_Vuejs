@@ -1,6 +1,14 @@
 <template lang="pug">
   form(@submit.prevent="addItem")
-    input(type="text", v-model="newItem")
+    input(type="text", v-model="title", placeholder="Title")
+    .score_area
+      span Priority:{{ score }}
+      star-rating(:star-size="20", :show-rating="false", active-color="#FFA726", v-model="score")
+    .select_area
+      span Status:
+      select(v-model="selected")
+        option(v-for="option in options") {{ option }}
+    textarea(placeholder="Description", v-model="description")
     input(type="submit", value="Add")
 </template>
 
@@ -14,30 +22,36 @@ export default {
     todos: {
       type: Array,
       require: false,
-      default: () => ([])
-    }
+      default: () => ([]),
+    },
   },
   data() {
     return {
-      newItem: '',
+      title: '',
+      description: '',
+      score: 1,
+      selected: 'Todo',
+      options: ['Todo', 'Doing']
     };
   },
   methods: {
     addItem() {
-      if (this.newItem === '') {
+      if (this.title === '') {
         alert('値を入力してください。');
         return;
       }
       const item = {
         status: false,
-        score: 1,
-        title: this.newItem,
+        score: this.score,
+        title: this.title,
+        description: this.description,
+        label: this.selected
       };
-      axios.post(`${URL}/todos`, item)
+      axios.post(`${URL}/cards`, item)
         .then((res) => {
           this.todos.push(res.data);
-        })
-      this.newItem = '';
+        });
+      this.title = '';
     },
   },
 };

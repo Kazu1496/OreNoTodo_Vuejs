@@ -1,80 +1,75 @@
 <template lang="pug">
-  div.todo
-    h1 {{ msg }}
-    add-form(:todos="todos")
-    p {{ remaining.length }}/{{ todos.length }}
-    button(@click="purgeItem") Purge
-    todo-list(:todos="todos")
+  .todo
+    .button_area
+      button(@click="showModal = true") Add Todo
+      button(@click="purgeItem") Purge
+    .list-container
+      todo-list(v-for="label in labels", :todos="todos", :label="label")
+    add-item-modal(v-if="showModal", @close="showModal = false", :todos="todos")
 </template>
 
 <script>
-import AddForm from '../molecules/AddForm.vue'
-import TodoList from '../organisms/TodoList.vue'
-
 import axios from 'axios';
+import AddForm from '../molecules/AddForm.vue';
+import TodoList from '../organisms/TodoList.vue';
+import AddItemModal from '../modal/AddItemModal.vue';
+
 
 const URL = process.env.VUE_APP_API_URL_BASE;
 export default {
   name: 'PageTop',
   components: {
     AddForm,
-    TodoList
-  },
-  props: {
-    msg: {
-      type: String,
-      require: false,
-      default: ''
-    }
+    TodoList,
+    AddItemModal,
   },
   data() {
     return {
       newItem: '',
-      todos: []
-    }
+      todos: [],
+      labels: [],
+      showModal: false,
+    };
   },
   computed: {
     remaining() {
-      let items = this.todos.filter(todo => {
-        return !todo.status;
-      });
-      return items;
+      return this.todos.filter(todo => !todo.status);
     }
   },
   mounted() {
-    axios.get(URL + "/todos")
+    axios.get(`${URL}/cards`)
       .then(res => {
-        this.todos = res.data
+        this.todos = res.data;
       })
-      .catch(err => {
-        console.log(err);
+    axios.get(`${URL}/card_labels`)
+      .then(res => {
+        this.labels = res.data;
       })
   },
   methods: {
     purgeItem() {
-      if(this.remaining.length >= this.todos.length){
+      if (this.remaining.length >= this.todos.length) {
         alert('終わったTodoがありません。');
         return;
-      }else{
-        if(!confirm("一括削除しても大丈夫ですか？")){
-          return;
-        }
       }
-      this.todos.forEach(todo => {
-        if(todo.status){
-          axios.delete(URL + "/todos/" + todo.id)
-            .catch(err => {
+      if (!confirm('一括削除しても大丈夫ですか？')) {
+        return;
+      }
+      this.todos.forEach((todo) => {
+        if (todo.status) {
+          axios.delete(`${URL}/cards/${todo.id}`)
+            .catch((err) => {
               alert(err);
-            })
+            });
         }
-      })
+      });
       this.todos = this.remaining;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../../assets/stylesheets/pages/TodoIndex.scss';
+@import '../../assets/stylesheets/pages/PageTop.scss';
 </style>

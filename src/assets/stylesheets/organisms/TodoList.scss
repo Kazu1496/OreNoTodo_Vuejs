@@ -1,12 +1,26 @@
-ul{
+@import '../Setting.scss';
+
+ul, .nothing_list{
   display: flex;
   flex-direction: column;
-  height: 350px;
-  border: 1px solid #000;
-  border-radius: 10px;
+  width: calc(100% / 3);
+  border-radius: 5px;
+  background-color: #FFF;
   padding: 10px;
-  overflow: scroll;
-  li{
-    margin: 15px auto;
+  @include shadow(4px, 3px, 1px, 0.3);
+  &:not(:last-child){
+    margin-right: 20px;
   }
+  .message{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+.label{
+  font-size: 24px;
+  font-weight: bold;
+  color: $secondary_black_text;
+  border-bottom: 2px solid $secondary_black_text;
+  text-align: left;
 }

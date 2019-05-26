@@ -1,29 +1,23 @@
 <template lang="pug">
   div#app
-    img(src="./assets/logo.png")
-    page-top(msg="Todo List")
+    page-header
+    page-top
 </template>
 
 <script>
-import PageTop from './components/pages/PageTop.vue'
+import PageTop from './components/pages/PageTop.vue';
+import PageHeader from './components/pages/PageHeader.vue';
 
 export default {
   name: 'App',
   components: {
-    PageTop
-  }
-}
+    PageTop,
+    PageHeader,
+  },
+};
 </script>
 
 <style lang="scss">
 @import './assets/stylesheets/Reset.scss';
-#app{
-  width: 350px;
-  text-align: center;
-  margin: 20px auto;
-  img{
-    width: 100px;
-    height: auto;
-  }
-}
+@import './assets/stylesheets/Setting.scss';
 </style>

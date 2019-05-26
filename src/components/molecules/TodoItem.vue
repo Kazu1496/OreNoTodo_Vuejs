@@ -1,8 +1,11 @@
 <template lang="pug">
   li
-    input(type="checkbox" v-model="todo.status" @click="toggleStatus")
-    span(:class="{ done: todo.status }") {{ todo.title }}
-    button(@click="deleteItem(index)") Delete
+    .todo_elements
+      span.title(:class="{ done: todo.status }") {{ todo.title }}
+      .priority_area
+        font-awesome-icon(icon="star", v-for="n in todo.score")
+    select(v-model="dataTodo.label", @change="changeLabel")
+      option(v-for="option in options") {{ option }}
 </template>
 
 <script>
@@ -15,33 +18,29 @@ export default {
     index: {
       type: Number,
       require: false,
-      default: 0
+      default: 0,
     },
     todo: {
       type: Object,
       require: false,
-      default: () => ({})
-    },
-    todos: {
-      type: Array,
-      require: false,
-      default: () => ([])
+      default: () => ({}),
+    }
+  },
+  data() {
+    return {
+      dataTodo: this.todo,
+      options: ['Todo', 'Doing', 'Done']
     }
   },
   methods: {
-    deleteItem(index) {
-      if(!confirm("削除しても大丈夫ですか？")){
-        return;
-      }
-      axios.delete(URL + "/todos/" + this.todo.id)
-      this.todos.splice(index, 1);
+    changeLabel() {
+      axios.patch(`${URL}/cards/${this.dataTodo.id}`, this.dataTodo)
     },
-    toggleStatus() {
-      this.todo.status = !this.todo.status
-      axios.patch(URL + "/todos/" + this.todo.id, this.todo)
+    callDelete(todo) {
+      this.$emit('delete', todo)
     }
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

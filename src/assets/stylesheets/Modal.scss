@@ -1,0 +1,48 @@
+@import 'Setting.scss';
+
+.modal-wrapper {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  transition: opacity .3s ease;
+  .modal-container {
+    position: relative;
+    z-index: 10000;
+    width: 500px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px 30px;
+    transition: all .3s ease;
+    button{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: $secondary_black_text;
+      border: none;
+      background-color: transparent;
+    }
+    h2{
+      display: inline-block;
+      font-size: 30px;
+      font-weight: bold;
+      color: $secondary_black_text;
+      border-bottom: 2px solid $secondary_black_text;
+    }
+  }
+}
+.modal-leave-active {
+  opacity: 0;
+}
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
