@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import TodoItem from '../molecules/TodoItem.vue'
 import EditItemModal from '../modal/EditItemModal.vue'
 import axios from 'axios'
 import VueMarkdown from 'vue-markdown'
@@ -30,7 +29,6 @@ const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'PageShowItem',
   components: {
-    TodoItem,
     EditItemModal,
     VueMarkdown
   },
@@ -45,17 +43,6 @@ export default {
       .then(res => {
         this.todo = res.data
       })
-  },
-  methods: {
-    filtering (label) {
-      const todos = this.todos.filter(todoObj => todoObj.label === label)
-      todos.sort((a, b) => {
-        if (a.score > b.score) return -1
-        if (a.score < b.score) return 1
-        return 0
-      })
-      return todos
-    }
   }
 }
 </script>

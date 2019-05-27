@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
 import axios from 'axios'
 import TodoItem from '../molecules/TodoItem.vue'
 
@@ -21,8 +20,7 @@ const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'TodoList',
   components: {
-    TodoItem,
-    draggable
+    TodoItem
   },
   props: {
     todos: {
@@ -37,13 +35,6 @@ export default {
     }
   },
   methods: {
-    // 一旦drag/drop機能はなくす
-    // draggableEnd() {
-    //   this.todos.forEach((todo, index) => {
-    //     todo.order = index
-    //     axios.patch(`${URL}/cards/${todo.id}`, todo)
-    //   })
-    // },
     deleteItem (todo) {
       if (!confirm('削除しても大丈夫ですか？')) {
         return
