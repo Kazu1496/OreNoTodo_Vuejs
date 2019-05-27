@@ -52,5 +52,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/stylesheets/molecules/AddForm.scss';
+@import '../../assets/stylesheets/molecules/Form.scss';
 </style>

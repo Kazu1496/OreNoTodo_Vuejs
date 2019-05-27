@@ -1,8 +1,8 @@
 @import '../Setting.scss';
 
 .show_item-container{
-  width: 600px;
-  font-size: 16px;
+  width: 900px;
+  font-size: 20px;
   background-color: #FFF;
   border-radius: 5px;
   padding: 20px;
@@ -10,13 +10,16 @@
   @include shadow(4px, 3px, 1px, 0.3);
   h1{
     color: $primary_black_text;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
     border-bottom: 3px solid $primary_black_text;
+    padding-bottom: 10px;
+    margin: 0;
   }
   .area_title{
     color: $secondary_black_text;
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: bold;
     margin: 0 10px 10px 0;
   }
   .status_area, .priority_area{
@@ -24,11 +27,17 @@
   }
   .priority_area{
     svg{
+      font-size: 28px;
       color: $third_color;
+      margin-right: 10px;
     }
   }
   .description_area{
     margin: 30px 0 50px;
+    .markdown-body{
+      background-color: #F7F7F7;
+      padding: 20px;
+    }
   }
   .link_area{
     text-align: center;
@@ -39,10 +48,9 @@
       text-decoration: none;
       background-color: $third_color;
       border-radius: 5px;
-      padding: 5px 10px;
-      &:not(:last-child){
-        margin-right: 10px;
-      }
+      cursor: pointer;
+      padding: 10px 20px;
+      margin: 0 20px;
     }
   }
 }

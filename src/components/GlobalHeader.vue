@@ -1,6 +1,6 @@
 <template lang="pug">
   header
-    h1 俺の考えた最強のTodoリスト
+    h1 俺の考えた最強のTODOリスト
 </template>
 
 <script>

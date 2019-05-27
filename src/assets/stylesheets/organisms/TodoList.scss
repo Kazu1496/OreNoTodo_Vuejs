@@ -1,4 +1,5 @@
 @import '../Setting.scss';
+@import '../Reset.scss';
 
 ul, .nothing_list{
   display: flex;
@@ -11,14 +12,19 @@ ul, .nothing_list{
   &:not(:last-child){
     margin-right: 20px;
   }
+  p{
+    padding-bottom: 5px;
+  }
   .message{
-    font-size: 20px;
+    color: $hint_black_text;
+    font-size: 24px;
+    font-weight: bold;
     text-align: center;
     margin-top: 20px;
   }
 }
 .label{
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   color: $secondary_black_text;
   border-bottom: 2px solid $secondary_black_text;

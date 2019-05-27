@@ -51,6 +51,7 @@ export default {
           this.todos.push(res.data)
         })
       this.title = ''
+      this.description = ''
       this.score = 1
     }
   }
@@ -58,5 +59,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/stylesheets/molecules/AddForm.scss';
+@import '../../assets/stylesheets/molecules/Form.scss';
 </style>

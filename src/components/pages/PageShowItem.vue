@@ -10,10 +10,13 @@
       font-awesome-icon(icon="star", v-for="n in todo.score")
     .description_area
       p.area_title Description
-      p.text {{ todo.description ? todo.description : 'Descriptionがありません' }}
+      vue-markdown(
+        :source="todo.description? todo.description : '説明文がありません。' "
+        class="markdown-body"
+      )
     .link_area
       router-link(:to="{ name: 'home' }") Back
-      button(@click="showModal = true") Edit
+      a(@click="showModal = true") Edit
     edit-item-modal(v-show="showModal", @close="showModal = false", :todo="todo")
 </template>
 
@@ -21,13 +24,15 @@
 import TodoItem from '../molecules/TodoItem.vue'
 import EditItemModal from '../modal/EditItemModal.vue'
 import axios from 'axios'
+import VueMarkdown from 'vue-markdown'
 
 const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'PageShowItem',
   components: {
     TodoItem,
-    EditItemModal
+    EditItemModal,
+    VueMarkdown
   },
   data () {
     return {

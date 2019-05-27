@@ -19,8 +19,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/stylesheets/Reset.scss';
-@import './assets/stylesheets/Setting.scss';
+html, body{
+  margin: 0;
+  padding: 0;
+}
 .fade-enter-active, .fade-leave-active{
   transition: opacity .3s;
 }

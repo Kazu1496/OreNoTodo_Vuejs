@@ -1,4 +1,5 @@
 @import '../Setting.scss';
+@import '../Reset.scss';
 
 a{
   display: block;
@@ -17,7 +18,7 @@ a{
       .priority_area{
         display: flex;
         align-items: center;
-        font-size: 13px;
+        font-size: 18px;
         svg{
           color: $third_color;
         }
@@ -26,6 +27,7 @@ a{
     .title{
       display: block;
       width: 100%;
+      font-size: 20px;
       font-weight: bold;
       color: $secondary_black_text;
       margin-bottom: 10px;
