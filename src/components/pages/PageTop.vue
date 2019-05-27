@@ -5,7 +5,7 @@
       button(@click="purgeItem") Purge
     .list-container
       todo-list(v-for="label in labels", :todos="todos", :label="label")
-    add-item-modal(v-if="showModal", @close="showModal = false", :todos="todos")
+    add-item-modal(v-show="showModal", @close="showModal = false", :todos="todos")
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
       return this.todos.filter(todo => todo.label === 'Done')
     }
   },
-  mounted () {
+  created () {
     axios.get(`${URL}/cards`)
       .then(res => {
         this.todos = res.data

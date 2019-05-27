@@ -4,12 +4,25 @@
       .modal-container
         button(@click="$emit('close')")
           font-awesome-icon(icon="times", size="2x")
-        h2 {{ todo.title }}
+        h2 Edit Todo!
+        edit-form(:todo="todo")
 </template>
 
 <script>
+import EditForm from '../molecules/EditForm.vue'
+
 export default {
-  name: 'ItemModal'
+  name: 'EditItemModal',
+  components: {
+    EditForm
+  },
+  props: {
+    todo: {
+      type: Object,
+      require: true,
+      default: () => ([])
+    }
+  }
 }
 </script>
 

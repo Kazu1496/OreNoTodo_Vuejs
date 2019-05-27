@@ -31,6 +31,7 @@
     "sass-loader": "^7.1.0",
     "sass-resources-loader": "^2.0.0",
     "vue-rate-it": "^2.1.0",
+    "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.5.21",
     "vuedraggable": "^2.21.0"
   },

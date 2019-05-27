@@ -3,8 +3,7 @@
     p.label {{ label.name }}
     .list_item-container(v-model="todos")
       todo-item(
-        v-for="(todo, index) in filtering(label)"
-        :index="index"
+        v-for="todo in filtering(label)"
         :todo="todo"
         @delete="deleteItem(todo)"
       )
@@ -28,12 +27,12 @@ export default {
   props: {
     todos: {
       type: Array,
-      require: false,
+      require: true,
       default: () => ([])
     },
     label: {
       type: Object,
-      require: false,
+      require: true,
       default: () => ({})
     }
   },

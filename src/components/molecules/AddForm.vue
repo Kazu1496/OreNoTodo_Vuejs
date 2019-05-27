@@ -21,7 +21,7 @@ export default {
   props: {
     todos: {
       type: Array,
-      require: false,
+      require: true,
       default: () => ([])
     }
   },
@@ -41,7 +41,6 @@ export default {
         return
       }
       const item = {
-        status: false,
         score: this.score,
         title: this.title,
         description: this.description,

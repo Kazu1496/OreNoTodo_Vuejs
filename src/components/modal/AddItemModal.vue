@@ -19,7 +19,7 @@ export default {
   props: {
     todos: {
       type: Array,
-      require: false,
+      require: true,
       default: () => ({})
     }
   }

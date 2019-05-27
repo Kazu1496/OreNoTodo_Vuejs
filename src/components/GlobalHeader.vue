@@ -5,10 +5,10 @@
 
 <script>
 export default {
-  name: 'PageHeader'
+  name: 'GlobalHeader'
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/stylesheets/pages/PageHeader.scss';
+@import '../assets/stylesheets/pages/PageHeader.scss';
 </style>

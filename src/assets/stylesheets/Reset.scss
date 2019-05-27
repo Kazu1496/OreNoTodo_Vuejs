@@ -103,12 +103,15 @@ input[type="submit"], button {
 input[type="submit"], button{
   text-decoration: none;
   color: #FFF;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   border: 1px solid #FFA726;
   border-radius: 5px;
   background-color: #FFA726;
   padding: 5px 10px;
+}
+
+a, input[type="submit"], button{
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   &:hover{
     opacity: 0.7;

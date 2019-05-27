@@ -1,18 +1,19 @@
 <template lang="pug">
   div#app
-    page-header
-    page-top
+    global-header
+    transition(name="fade", mode="out-in")
+      router-view
 </template>
 
 <script>
 import PageTop from './components/pages/PageTop.vue'
-import PageHeader from './components/pages/PageHeader.vue'
+import GlobalHeader from './components/GlobalHeader.vue'
 
 export default {
   name: 'App',
   components: {
     PageTop,
-    PageHeader
+    GlobalHeader
   }
 }
 </script>
@@ -20,4 +21,10 @@ export default {
 <style lang="scss">
 @import './assets/stylesheets/Reset.scss';
 @import './assets/stylesheets/Setting.scss';
+.fade-enter-active, .fade-leave-active{
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
 </style>
