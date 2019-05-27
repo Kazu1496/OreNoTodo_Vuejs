@@ -13,32 +13,32 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
-const URL = process.env.VUE_APP_API_URL_BASE;
+const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'AddForm',
   props: {
     todos: {
       type: Array,
       require: false,
-      default: () => ([]),
-    },
+      default: () => ([])
+    }
   },
-  data() {
+  data () {
     return {
       title: '',
       description: '',
       score: 1,
       selected: 'Todo',
       options: ['Todo', 'Doing']
-    };
+    }
   },
   methods: {
-    addItem() {
+    addItem () {
       if (this.title === '') {
-        alert('値を入力してください。');
-        return;
+        alert('値を入力してください。')
+        return
       }
       const item = {
         status: false,
@@ -46,16 +46,16 @@ export default {
         title: this.title,
         description: this.description,
         label: this.selected
-      };
+      }
       axios.post(`${URL}/cards`, item)
         .then((res) => {
-          this.todos.push(res.data);
-        });
-      this.title = '';
-      this.score = 1;
-    },
-  },
-};
+          this.todos.push(res.data)
+        })
+      this.title = ''
+      this.score = 1
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

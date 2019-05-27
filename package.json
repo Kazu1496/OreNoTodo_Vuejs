@@ -16,8 +16,9 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-service": "^3.7.0",
+    "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
@@ -41,17 +42,17 @@
     "extends": [
       "eslint:recommended",
       "plugin:vue/recommended",
-      "plugin:vue/essential"
+      "plugin:vue/essential",
+      "@vue/standard"
     ],
-    "rules": {
-      "no-console": "off"
-    },
+    "rules": {},
     "parserOptions": {
       "ecmaVersion": 6,
       "sourceType": "module",
       "ecmaFeatures": {
         "jsx": true
-      }
+      },
+      "parser": "babel-eslint"
     }
   },
   "postcss": {

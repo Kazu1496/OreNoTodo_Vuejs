@@ -5,16 +5,16 @@
 </template>
 
 <script>
-import PageTop from './components/pages/PageTop.vue';
-import PageHeader from './components/pages/PageHeader.vue';
+import PageTop from './components/pages/PageTop.vue'
+import PageHeader from './components/pages/PageHeader.vue'
 
 export default {
   name: 'App',
   components: {
     PageTop,
-    PageHeader,
-  },
-};
+    PageHeader
+  }
+}
 </script>
 
 <style lang="scss">

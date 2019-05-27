@@ -14,22 +14,22 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable';
-import axios from 'axios';
-import TodoItem from '../molecules/TodoItem.vue';
+import draggable from 'vuedraggable'
+import axios from 'axios'
+import TodoItem from '../molecules/TodoItem.vue'
 
-const URL = process.env.VUE_APP_API_URL_BASE;
+const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'TodoList',
   components: {
     TodoItem,
-    draggable,
+    draggable
   },
   props: {
     todos: {
       type: Array,
       require: false,
-      default: () => ([]),
+      default: () => ([])
     },
     label: {
       type: Object,
@@ -45,24 +45,24 @@ export default {
     //     axios.patch(`${URL}/cards/${todo.id}`, todo)
     //   })
     // },
-    deleteItem(todo) {
+    deleteItem (todo) {
       if (!confirm('削除しても大丈夫ですか？')) {
-        return;
+        return
       }
-      axios.delete(`${URL}/cards/${todo.id}`);
+      axios.delete(`${URL}/cards/${todo.id}`)
       this.todos = this.todos.filter(todoObj => todoObj.id !== todo.id)
     },
-    filtering(label) {
+    filtering (label) {
       const todos = this.todos.filter(todoObj => todoObj.label === label.name)
       todos.sort((a, b) => {
-        if(a.score > b.score) return -1;
-        if(a.score < b.score) return 1;
-        return 0;
+        if (a.score > b.score) return -1
+        if (a.score < b.score) return 1
+        return 0
       })
-      return todos;
+      return todos
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

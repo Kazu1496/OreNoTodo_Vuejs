@@ -9,37 +9,37 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
-const URL = process.env.VUE_APP_API_URL_BASE;
+const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'TodoItem',
   props: {
     index: {
       type: Number,
       require: false,
-      default: 0,
+      default: 0
     },
     todo: {
       type: Object,
       require: false,
-      default: () => ({}),
+      default: () => ({})
     }
   },
-  data() {
+  data () {
     return {
       options: ['Todo', 'Doing', 'Done']
     }
   },
   methods: {
-    changeLabel() {
+    changeLabel () {
       axios.patch(`${URL}/cards/${this.todo.id}`, this.todo)
     },
-    callDelete(todo) {
+    callDelete (todo) {
       this.$emit('delete', todo)
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
