@@ -1,4 +1,5 @@
 @import '../Setting.scss';
+@import '../Markdown.scss';
 
 .show_item-container{
   width: 900px;
@@ -8,7 +9,7 @@
   padding: 20px;
   margin: 50px auto;
   @include shadow(4px, 3px, 1px, 0.3);
-  h1{
+  .title{
     color: $primary_black_text;
     font-size: 30px;
     font-weight: bold;
@@ -22,7 +23,7 @@
     font-weight: bold;
     margin: 0 10px 10px 0;
   }
-  .status_area, .priority_area{
+  .status_area, .priority_area, .description_area{
     margin: 30px 0;
   }
   .priority_area{
@@ -33,7 +34,6 @@
     }
   }
   .description_area{
-    margin: 30px 0 50px;
     .markdown-body{
       background-color: #F7F7F7;
       padding: 20px;

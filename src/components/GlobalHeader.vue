@@ -1,6 +1,7 @@
 <template lang="pug">
   header
-    h1 俺の考えた最強のTODOリスト
+    router-link(:to="{ name: 'home' }")
+      h1 俺の考えた最強のTODOリスト
 </template>
 
 <script>
@@ -10,5 +11,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/stylesheets/pages/PageHeader.scss';
+@import '../assets/stylesheets/Header.scss';
 </style>

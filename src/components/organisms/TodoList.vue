@@ -5,18 +5,15 @@
       todo-item(
         v-for="todo in filtering(label)"
         :todo="todo"
-        @delete="deleteItem(todo)"
       )
-  .nothing_list(v-else)
+  .nothing_item(v-else)
     p.label {{ label.name }}
     p.message Nothing {{ label.name }} Todo!!
 </template>
 
 <script>
-import axios from 'axios'
 import TodoItem from '../molecules/TodoItem.vue'
 
-const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'TodoList',
   components: {
@@ -35,13 +32,6 @@ export default {
     }
   },
   methods: {
-    deleteItem (todo) {
-      if (!confirm('削除しても大丈夫ですか？')) {
-        return
-      }
-      axios.delete(`${URL}/cards/${todo.id}`)
-      this.todos = this.todos.filter(todoObj => todoObj.id !== todo.id)
-    },
     filtering (label) {
       const todos = this.todos.filter(todoObj => todoObj.label === label.name)
       todos.sort((a, b) => {

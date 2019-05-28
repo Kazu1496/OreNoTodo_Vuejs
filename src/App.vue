@@ -22,9 +22,10 @@ export default {
 html, body{
   margin: 0;
   padding: 0;
+  background-color: #F7F7F7;
 }
 .fade-enter-active, .fade-leave-active{
-  transition: opacity .3s;
+  transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to{
   opacity: 0;

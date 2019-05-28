@@ -1,7 +1,7 @@
 <template lang="pug">
   .show_item-container
     .item_header
-      h1 {{ todo.title }}
+      h1.title {{ todo.title }}
     .status_area
       p.area_title Status
       p {{ todo.label }}
@@ -17,6 +17,7 @@
     .link_area
       router-link(:to="{ name: 'home' }") Back
       a(@click="showModal = true") Edit
+      a(@click="deleteItem") Delete
     edit-item-modal(v-show="showModal", @close="showModal = false", :todo="todo")
 </template>
 
@@ -43,6 +44,17 @@ export default {
       .then(res => {
         this.todo = res.data
       })
+  },
+  methods: {
+    deleteItem () {
+      if (!confirm('削除しても大丈夫ですか？')) {
+        return
+      }
+      axios.delete(`${URL}/cards/${this.todo.id}`)
+        .then(res => {
+          this.$router.push('/')
+        })
+    }
   }
 }
 </script>

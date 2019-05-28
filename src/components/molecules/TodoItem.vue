@@ -21,11 +21,6 @@ export default {
     return {
       options: ['Todo', 'Doing', 'Done']
     }
-  },
-  methods: {
-    callDelete (todo) {
-      this.$emit('delete', todo)
-    }
   }
 }
 </script>
