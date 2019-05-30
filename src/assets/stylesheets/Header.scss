@@ -10,11 +10,12 @@ header{
   padding: 0 20px;
   @include shadow(4px, 3px, 1px, 0.3);
   a{
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFF;
     text-decoration: none;
     h1{
-      font-size: 20px;
-      font-weight: bold;
-      color: #FFF;
+      font-size: 18px;
     }
   }
 }

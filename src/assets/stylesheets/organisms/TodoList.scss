@@ -3,6 +3,7 @@
 
 ul, .nothing_item{
   width: calc(100% / 3);
+  height: 100%;
   border-radius: 5px;
   background-color: #FFF;
   box-sizing: inherit;
@@ -16,7 +17,7 @@ ul, .nothing_item{
   }
   .message{
     color: $hint_black_text;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;

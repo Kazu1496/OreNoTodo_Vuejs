@@ -19,6 +19,7 @@ $divider_black_text: rgba(#000,0.14);
 }
 
 input[type="submit"], button{
+  height: 35px;
   text-decoration: none;
   color: #FFF;
   font-size: 18px;
@@ -30,7 +31,7 @@ input[type="submit"], button{
   border: 1px solid #FFA726;
   border-radius: 5px;
   background-color: #FFA726;
-  padding: 5px 10px;
+  padding: 0 10px;
   &::-webkit-search-decoration {
     display: none;
   }
@@ -40,6 +41,7 @@ input[type="submit"], button{
 }
 
 a, input[type="submit"], button{
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   &:hover{
     opacity: 0.7;

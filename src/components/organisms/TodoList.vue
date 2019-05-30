@@ -1,7 +1,7 @@
 <template lang="pug">
   ul(v-if="filtering(label).length")
     p.label {{ label.name }}
-    .list_item-container(v-model="todos")
+    .list_item-container
       todo-item(
         v-for="todo in filtering(label)"
         :todo="todo"
@@ -40,6 +40,9 @@ export default {
         return 0
       })
       return todos
+    },
+    draggableEnd () {
+
     }
   }
 }

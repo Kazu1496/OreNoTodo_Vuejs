@@ -8,12 +8,23 @@
 <script>
 import PageTop from './components/pages/PageTop.vue'
 import GlobalHeader from './components/GlobalHeader.vue'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 export default {
   name: 'App',
   components: {
     PageTop,
     GlobalHeader
+  },
+  created () {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$router.push('/')
+      } else {
+        this.$router.push('/signin')
+      }
+    })
   }
 }
 </script>

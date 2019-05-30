@@ -17,18 +17,21 @@
     padding-bottom: 10px;
     margin: 0;
   }
-  .area_title{
-    color: $secondary_black_text;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0 10px 10px 0;
-  }
   .status_area, .priority_area, .description_area{
-    margin: 30px 0;
+    margin: 20px 0;
+    .area_title{
+      color: $secondary_black_text;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0 10px 10px 0;
+    }
+    p{
+      margin: 0;
+    }
   }
   .priority_area{
     svg{
-      font-size: 28px;
+      font-size: 24px;
       color: $third_color;
       margin-right: 10px;
     }
