@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from './store/index'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -27,5 +28,6 @@ firebase.initializeApp(config)
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

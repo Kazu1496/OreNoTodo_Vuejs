@@ -20,6 +20,13 @@ export default {
       password: ''
     }
   },
+  beforeCreate () {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$router.push('/')
+      }
+    })
+  },
   methods: {
     signUp () {
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)

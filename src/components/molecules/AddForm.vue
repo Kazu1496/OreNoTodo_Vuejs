@@ -13,18 +13,10 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { T } from '../../store/todo/types'
 
-const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'AddForm',
-  props: {
-    todos: {
-      type: Array,
-      require: true,
-      default: () => ([])
-    }
-  },
   data () {
     return {
       title: '',
@@ -46,10 +38,7 @@ export default {
         description: this.description,
         label: this.selected
       }
-      axios.post(`${URL}/cards`, item)
-        .then((res) => {
-          this.todos.push(res.data)
-        })
+      this.$store.dispatch(`todo/${T.ADD_TODO}`, item)
       this.title = ''
       this.description = ''
       this.score = 1

@@ -5,6 +5,19 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "redirects": [{
+      "source" : "/signin",
+      "destination" : "https://oreno-todo.firebaseapp.com/signin",
+      "type" : 301
+    }, {
+      "source" : "/signup",
+      "destination" : "https://oreno-todo.firebaseapp.com/signup",
+      "type" : 302
+    }, {
+      "source" : "/cards/:card_id*",
+      "destination" : "https://oreno-todo.firebaseapp.com/cards/:card_id*",
+      "type" : 302
+    }]
   }
 }

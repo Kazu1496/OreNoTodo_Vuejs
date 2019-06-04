@@ -23,10 +23,10 @@
 
 <script>
 import EditItemModal from '../modal/EditItemModal.vue'
-import axios from 'axios'
 import VueMarkdown from 'vue-markdown'
+import { T } from '../../store/todo/types'
+import { mapGetters } from 'vuex'
 
-const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'PageShowItem',
   components: {
@@ -35,25 +35,24 @@ export default {
   },
   data () {
     return {
-      showModal: false,
-      todo: {}
+      showModal: false
     }
   },
-  created () {
-    axios.get(`${URL}/cards/${this.$route.params.card_id}`)
-      .then(res => {
-        this.todo = res.data
-      })
+  computed: {
+    ...mapGetters('todo', {
+      todo: 'getTodo'
+    })
+  },
+  mounted () {
+    this.$store.dispatch(`todo/${T.GET_TODO}`, this.$route.params.card_id)
   },
   methods: {
     deleteItem () {
       if (!confirm('削除しても大丈夫ですか？')) {
         return
       }
-      axios.delete(`${URL}/cards/${this.todo.id}`)
-        .then(res => {
-          this.$router.push('/')
-        })
+      this.$store.dispatch(`todo/${T.DELETE_TODO}`, this.$route.params.card_id)
+      this.$router.push('/')
     }
   }
 }

@@ -2,6 +2,7 @@
   .signin_container
     h1 Sign in
     button(@click="googleLogin") Googleでログイン
+    p または
     form(@submit.prevent="signIn")
       input(type="text" placeholder="Email" v-model="email")
       input(type="password" placeholder="Password" v-model="password")
@@ -23,11 +24,17 @@ export default {
       isAuth: false
     }
   },
+  beforeCreate () {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$router.push('/')
+      }
+    })
+  },
   methods: {
     signIn () {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          alert('ログインしました')
           this.$router.push('/')
         })
         .catch(_ => {

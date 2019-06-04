@@ -13,9 +13,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { T } from '../../store/todo/types'
 
-const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'EditForm',
   props: {
@@ -42,10 +41,14 @@ export default {
         description: this.todo.description,
         label: this.todo.label
       }
-      axios.patch(`${URL}/cards/${this.todo.id}`, item)
-        .then((res) => {
-          this.$router.push('/')
-        })
+      this.$store.dispatch(`todo/${T.UPDATE_TODO}`,
+        {
+          todoId: this.$route.params.card_id,
+          beforeTodo: this.todo,
+          todo: item
+        }
+      )
+      this.$router.push('/')
     }
   }
 }

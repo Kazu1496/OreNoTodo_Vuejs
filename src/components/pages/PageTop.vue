@@ -4,17 +4,17 @@
       button(@click="showModal = true") Add Todo
       button(@click="purgeItem") Purge
     .list-container
-      todo-list(v-for="label in labels", :todos="todos", :label="label")
-    add-item-modal(v-show="showModal", @close="showModal = false", :todos="todos")
+      todo-list(v-for="todoList in todoLists", :todos="todoList.todos", :label="todoList.label")
+    add-item-modal(v-show="showModal", @close="showModal = false")
 </template>
 
 <script>
-import axios from 'axios'
 import AddForm from '../molecules/AddForm.vue'
 import TodoList from '../organisms/TodoList.vue'
 import AddItemModal from '../modal/AddItemModal.vue'
+import { T } from '../../store/todo/types'
+import { mapGetters } from 'vuex'
 
-const URL = process.env.VUE_APP_API_URL_BASE
 export default {
   name: 'PageTop',
   components: {
@@ -22,48 +22,28 @@ export default {
     TodoList,
     AddItemModal
   },
-  data () {
+  data: () => {
     return {
       newItem: '',
-      todos: [],
-      labels: [],
       showModal: false
     }
   },
   computed: {
-    remaining () {
-      return this.todos.filter(todo => todo.label !== 'Done')
-    },
-    doneTodo () {
-      return this.todos.filter(todo => todo.label === 'Done')
-    }
+    ...mapGetters('todo', {
+      todoLists: 'getTodolists',
+      labels: 'getLables'
+    })
   },
-  created () {
-    axios.get(`${URL}/cards`)
-      .then(res => {
-        this.todos = res.data
-      })
-    axios.get(`${URL}/card_labels`)
-      .then(res => {
-        this.labels = res.data
-      })
+  mounted () {
+    this.$store.dispatch(`todo/${T.GET_LABELS}`)
+    this.$store.dispatch(`todo/${T.GET_TODOLISTS}`)
   },
   methods: {
     purgeItem () {
-      if (this.doneTodo.length === 0) {
-        alert('終わったTodoがありません。')
-        return
-      }
       if (!confirm('一括削除しても大丈夫ですか？')) {
         return
       }
-      this.doneTodo.forEach(todo => {
-        axios.delete(`${URL}/cards/${todo.id}`)
-          .catch((err) => {
-            alert(err)
-          })
-      })
-      this.todos = this.remaining
+      this.$store.dispatch(`todo/${T.PURGE_TODO}`, this.todoLists)
     }
   }
 }

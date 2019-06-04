@@ -2,7 +2,8 @@
   header
     router-link(:to="{ name: 'home' }")
       h1 俺の考えた最強のTODOリスト
-    a(v-if="showButton" @click="signOut") ログアウト
+    .right_area(v-if="showButton")
+      a(@click="signOut") ログアウト
 </template>
 
 <script>
@@ -13,12 +14,15 @@ export default {
   name: 'GlobalHeader',
   data () {
     return {
+      user: '',
+      userImage: '@/assets/img/no_image.png',
       showButton: false
     }
   },
   created () {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        this.user = user
         this.showButton = true
       }
     })
@@ -27,7 +31,8 @@ export default {
     signOut: function () {
       firebase.auth().signOut()
         .then(() => {
-          window.location.reload()
+          this.showButton = false
+          this.$router.push('/signin')
         })
     }
   }
